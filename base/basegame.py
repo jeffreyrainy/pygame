@@ -9,8 +9,8 @@ class Game():
         pygame.init()
         self.clockFPS = pygame.time.Clock()
         self.displaySurf = pygame.display.set_mode((800, 600))
-        self.v1 = Voiture()
-        self.v2 = Voiture()
+        self.v1 = Voiture((K_LEFT, K_RIGHT, K_UP, K_DOWN))
+        self.v2 = Voiture((K_a, K_d, K_w, K_s))
     def events(self):
 
         for event in pygame.event.get():
@@ -21,24 +21,9 @@ class Game():
 
     def update(self):
 
-        if self.pressed_keys[K_LEFT]:
-            self.v1.posX = self.v1.posX - 5
-        if self.pressed_keys[K_RIGHT]:
-            self.v1.posX = self.v1.posX + 5
-        if self.pressed_keys[K_UP]:
-            self.v1.posY = self.v1.posY - 5
-        if self.pressed_keys[K_DOWN]:
-            self.v1.posY = self.v1.posY + 5
+        self.v1.move(self.pressed_keys)
+        self.v2.move(self.pressed_keys)
         
-        if self.pressed_keys[K_a]:
-            self.v2.posX = self.v2.posX - 5
-        if self.pressed_keys[K_d]:
-            self.v2.posX = self.v2.posX + 5
-        if self.pressed_keys[K_w]:
-            self.v2.posY = self.v2.posY - 5
-        if self.pressed_keys[K_s]:
-            self.v2.posY = self.v2.posY + 5
-
         self.clockFPS.tick(30)
 
     def display(self):
