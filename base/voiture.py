@@ -2,10 +2,10 @@ import pygame
 from pygame.locals import *
 
 class Voiture():
-    def __init__(self, keys):
+    def __init__(self, pos, keys):
         self.sprite = pygame.image.load("Enemy.png")
-        self.posX = 200
-        self.posY = 200
+        self.posX = pos[0]
+        self.posY = pos[1]
         self.keys = keys
 
     def move(self, keys):
@@ -18,4 +18,3 @@ class Voiture():
             self.posY = self.posY - 5
         if keys[self.keys[3]]:
             self.posY = self.posY + 5
-

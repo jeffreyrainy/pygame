@@ -9,8 +9,10 @@ class Game():
         pygame.init()
         self.clockFPS = pygame.time.Clock()
         self.displaySurf = pygame.display.set_mode((800, 600))
-        self.v1 = Voiture((K_LEFT, K_RIGHT, K_UP, K_DOWN))
-        self.v2 = Voiture((K_a, K_d, K_w, K_s))
+
+        self.v1 = Voiture((200, 200), (K_LEFT, K_RIGHT, K_UP, K_DOWN))
+        self.v2 = Voiture((200, 400), (K_a, K_d, K_w, K_s))
+
     def events(self):
 
         for event in pygame.event.get():
@@ -19,12 +21,27 @@ class Game():
 
         self.pressed_keys = pygame.key.get_pressed()
 
+    def clip(self, x, y, sprite):
+        if x < 0 :
+            x = 0
+        if y < 0:
+            y = 0
+        limitX = self.displaySurf.get_width() - sprite.get_width()
+        if x > limitX:
+            x = limitX
+        limitY = self.displaySurf.get_height() - sprite.get_height()
+        if y > limitY :
+            y = limitY
+        return (x, y)
+
     def update(self):
 
         self.v1.move(self.pressed_keys)
         self.v2.move(self.pressed_keys)
         
         self.clockFPS.tick(30)
+
+        
 
     def display(self):
 
