@@ -2,7 +2,8 @@ import pygame
 from pygame.locals import *
 
 class Voiture():
-    def __init__(self):
+    def __init__(self, posX, posY):
         self.sprite = pygame.image.load("Enemy.png")
-        self.posX = 200
-        self.posY = 200
+        self.posX = posX
+        self.posY = posY
+        
