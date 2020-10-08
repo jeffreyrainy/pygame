@@ -1,17 +1,17 @@
 import pygame
 from pygame.locals import *
-from voiture import Voiture 
 
 class Game():
     def __init__(self):
+        from voiture import Voiture 
 
         self.done = False
         pygame.init()
         self.clockFPS = pygame.time.Clock()
         self.displaySurf = pygame.display.set_mode((800, 600))
 
-        self.v1 = Voiture((200, 200), (K_LEFT, K_RIGHT, K_UP, K_DOWN))
-        self.v2 = Voiture((200, 400), (K_a, K_d, K_w, K_s))
+        self.v1 = Voiture((200, 200), (K_LEFT, K_RIGHT, K_UP, K_DOWN), self)
+        self.v2 = Voiture((200, 400), (K_a, K_d, K_w, K_s), self)
 
     def events(self):
 
